@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.Authentication
+@model Eventures.Web.ViewModels.Account.LoginBindingModel
+
+@inject IAuthenticationSchemeProvider SchemeProvider
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container text-center">
+    <h2 style="font-weight: bold">@ViewData["Title"]</h2>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <section>
+                <form method="post">
+                    <hr class="hr-3 bg-eventures">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Username"></label>
+                        <input asp-for="Username" class="form-control" placeholder="Username..." />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" class="form-control" placeholder="Password..." />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default bg-eventures">Login</button>
+                    </div>
+                    <div class="form-group">
+                        <p>
+                            <a asp-action="ForgotPassword" asp-controller="Account">Forgot your password?</a>
+                        </p>
+                        <p>
+                            <a asp-action="Register" asp-controller="Account">Register as a new user</a>
+                        </p>
+                    </div>
+                </form>
+                <hr class="hr-3 bg-eventures">
+                <form asp-action="ExternalLogin" method="post" class="form-horizontal text-center">
+                    <div>
+                        <p>
+                            @foreach (var provider in await SchemeProvider.GetRequestHandlerSchemesAsync())
+                            {
+                                <button type="submit" class="btn btn-info text-dark bg-eventures" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                            }
+                        </p>
+                    </div>
+                </form>
+                <hr class="hr-3 bg-eventures">
+            </section>
+        </div>
+    </div>
+</div>

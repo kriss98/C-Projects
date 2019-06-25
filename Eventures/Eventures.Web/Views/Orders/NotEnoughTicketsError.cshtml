@@ -1,0 +1,10 @@
+﻿@model Eventures.Web.ViewModels.Orders.NotEnoughTicketsErrorViewModel
+
+@{
+    ViewData["Title"] = "NotEnoughTicketsError";
+}
+
+<h1 class="text-danger text-center">There are only @Model.TotalTickets tickets left for this event! Please enter a valid number to order.</h1>
+<div class="text-center" style="margin: 20px">
+    <button class="btn btn-default bg-eventures" onclick="goBack()">Go Back</button>
+</div>

@@ -1,0 +1,52 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model Eventures.Web.ViewModels.Orders.Binding.CreateOrderBindingModel
+
+@{
+    ViewData["Title"] = "All Events";
+    int index = this.ViewBag.Page * 10 - 9;
+}
+
+<h1 class="text-center">All Events</h1>
+<hr class="hr-3 bg-eventures" />
+<table class="table mx-auto table-hover">
+    <thead>
+        <tr class="row">
+            <th class="col-md-1"><strong>#</strong></th>
+            <th class="col-md-2"><strong>Name</strong></th>
+            <th class="col-md-2"><strong>Start</strong></th>
+            <th class="col-md-2"><strong>End</strong></th>
+            <th class="col-md-5"><strong>Actions</strong></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ev in this.ViewBag.ViewModels)
+        {
+            <tr class="row">
+                <th class="col-md-1">@index</th>
+                <td class="col-md-2">@ev.Name</td>
+                <td class="col-md-2">@ev.Start</td>
+                <td class="col-md-2">@ev.End</td>
+                <td class="col-md-5">
+                    <form asp-controller="Orders" asp-action="OrderTickets" method="post" class="form-inline">
+
+                        <input type="hidden" asp-for="EventId" value="@ev.Id" />
+                        <input type="hidden" asp-for="CustomerName" value="@User.Identity.Name" />
+                        <label asp-for="Tickets"></label>
+                        <input asp-for="Tickets" class="form-control" />
+                        <button type="submit" class="btn btn-default bg-eventures">Order</button>
+                        <div>
+                            <span asp-validation-for="Tickets" class="text-danger"></span>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+
+            index++;
+        }
+    </tbody>
+</table>
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)ViewBag.ViewModels, page => Url.Action("All", new { page }))
+</div>
+<hr class="hr-3 bg-eventures" />

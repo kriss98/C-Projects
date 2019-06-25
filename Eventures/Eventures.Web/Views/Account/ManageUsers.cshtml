@@ -1,0 +1,54 @@
+﻿@using Eventures.Models
+@using Microsoft.AspNetCore.Identity
+@model Eventures.Web.ViewModels.Account.Binding.UserIdViewModel
+
+@{
+    ViewData["Title"] = "Manage Users";
+    int index = 1;
+}
+
+@inject UserManager<EventuresUser> userManager
+
+<h1 class="text-center">All Events</h1>
+<hr class="hr-3 bg-eventures" />
+<table class="table mx-auto table-hover">
+    <thead>
+    <tr class="row">
+        <th class="col-md-1"><strong>#</strong></th>
+        <th class="col-md-3"><strong>Username</strong></th>
+        <th class="col-md-3"><strong>Email</strong></th>
+        <th class="col-md-2"><strong>UCN</strong></th>
+        <th class="col-md-3"><strong>Actions</strong></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in this.userManager.Users.Where(u => u.UserName != this.User.Identity.Name))
+    {
+        <tr class="row">
+            <th class="col-md-1">@index</th>
+            <td class="col-md-3">@user.UserName</td>
+            <td class="col-md-3">@user.Email</td>
+            <td class="col-md-2">@user.UCN</td>
+            <td class="col-md-3">
+                @if (this.userManager.GetRolesAsync(this.userManager.Users.FirstOrDefault(u => u.UserName == user.UserName)).Result.Contains("Admin"))
+                {
+                    <form asp-controller="Account" asp-action="Demote" method="post" class="form-inline">
+                        <input type="hidden" asp-for="@Model.Id" value="@user.Id"/>
+                        <button asp-controller="Account" asp-action="Demote" class="btn btn-default bg-eventures">Demote</button>
+                    </form>
+                }
+                else
+                {
+                    <form asp-controller="Account" asp-action="Promote" method="post" class="form-inline">
+                        <input type="hidden" asp-for="@Model.Id" value="@user.Id"/>
+                        <button asp-controller="Account" asp-action="Promote" class="btn btn-default bg-eventures">Promote</button>
+                    </form>
+                }
+            </td>
+        </tr>
+
+        index++;
+    }
+    </tbody>
+</table>
+<hr class="hr-3 bg-eventures" />

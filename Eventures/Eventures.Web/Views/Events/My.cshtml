@@ -1,0 +1,44 @@
+﻿@using Eventures.Web.ViewModels.Events
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "My Events";
+    int index = this.ViewBag.Page * 10 - 9;
+}
+
+<h1 class="text-center">My Events</h1>
+<hr class="hr-3 bg-eventures" />
+<table class="table mx-auto table-hover">
+    <thead>
+    <tr class="row">
+        <th class="col-md-1"><strong>#</strong></th>
+        <th class="col-md-3"><strong>Name</strong></th>
+        <th class="col-md-3"><strong>Start</strong></th>
+        <th class="col-md-3"><strong>End</strong></th>
+        <th class="col-md-2"><strong>Tickets</strong></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var ev in this.ViewBag.MyPagedEvents)
+    {
+        <tr class="row">
+            <th class="col-md-1">@index</th>
+            <td class="col-md-3">@ev.Name</td>
+            <td class="col-md-3">@ev.Start</td>
+            <td class="col-md-3">@ev.End</td>
+            <td class="col-md-2">@ev.Tickets</td>
+        </tr>
+
+        index++;
+    }
+    </tbody>
+</table>
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)ViewBag.MyPagedEvents, page => Url.Action("My", new { page }))
+</div>
+<hr class="hr-3 bg-eventures" />
+<div class="text-center" style="margin: 20px">
+    <button class="btn btn-default bg-eventures" onclick="goBack()">Go Back</button>
+</div>
+<hr class="hr-3 bg-eventures" />

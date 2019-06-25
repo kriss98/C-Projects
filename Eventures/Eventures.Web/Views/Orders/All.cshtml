@@ -1,0 +1,38 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "All Orders";
+    int index = this.ViewBag.Page * 10 - 9;
+}
+
+<h1 class="text-center">All Orders</h1>
+<hr class="hr-3 bg-eventures" />
+<table class="table mx-auto table-hover">
+    <thead>
+    <tr class="row">
+        <th class="col-md-1"><strong>#</strong></th>
+        <th class="col-md-5"><strong>Event</strong></th>
+        <th class="col-md-3"><strong>Customer</strong></th>
+        <th class="col-md-3"><strong>Ordered On</strong></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var ev in this.ViewBag.PagedOrders)
+    {
+        <tr class="row">
+            <th class="col-md-1">@index</th>
+            <th class="col-md-5">@ev.Event</th>
+            <th class="col-md-3">@ev.Customer</th>
+            <th class="col-md-3">@ev.OrderedOn</th>
+        </tr>
+
+        index++;
+    }
+    </tbody>
+</table>
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)ViewBag.PagedOrders, page => Url.Action("All", new { page }))
+</div>
+<hr class="hr-3 bg-eventures" />
+
