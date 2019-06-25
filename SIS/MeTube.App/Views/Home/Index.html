@@ -1,0 +1,19 @@
+﻿<div style="display: @Model.NotLoggedIn">
+    <hr class="my-3" />
+    <div class="jumbotron">
+        <p class="h1 display-3">Welcome to MeTube&trade;!</p>
+        <p class="h3">The simplest, easiest to use, most comfortable Multimedia Application.</p>
+        <hr class="my-3">
+        <p><a href="/Users/Login">Login</a> if you have an account or <a href="/Users/Register">Register</a> now and start tubing.</p>
+    </div>
+    <hr class="my-3" />
+</div>
+<div style="display: @Model.LoggedIn">
+    <h3 class="text-center my-3 text-info">Welcome, @Model.Username</h3>
+    <hr class="my-3"/>
+    <div class="container-fluid">    
+        <div class="row">
+            @Model.Collection.Tubes(@Item)
+        </div>
+    </div>
+</div>

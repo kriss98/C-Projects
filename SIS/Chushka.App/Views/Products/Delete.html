@@ -1,0 +1,42 @@
+﻿<main class="mt-3">
+    <h1 class="text-center">Delete Product</h1>
+    <hr class="bg-secondary half-width" />
+    <form class="mx-auto half-width" method="post" action="/Products/Delete?Id=@Model.Id">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" value="@Model.Name" name="Name" disabled="">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" step="0.01" class="form-control" id="price" value="@Model.Price" name="Price" disabled="">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="text" class="form-control" id="description" name="Description" disabled="">@Model.Description</textarea>
+        </div>
+        <h3 class="text-center">Channel Type</h3>
+        <hr class="bg-secondary w-50 hr-2" />
+        <div class="row justify-content-around">
+            <label>
+                <input type="radio" name="Type" id="food" value="Food" autocomplete="off" @Model.Food disabled=""> Food
+            </label>
+            <label>
+                <input type="radio" name="Type" id="domestic" value="Domestic" autocomplete="off" @Model.Domestic disabled=""> Domestic
+            </label>
+            <label>
+                <input type="radio" name="Type" id="health" value="Health" autocomplete="off" @Model.Health disabled=""> Health
+            </label>
+            <label>
+                <input type="radio" name="Type" id="cosmetic" value="Cosmetic" autocomplete="off" @Model.Cosmetic disabled=""> Cosmetic
+            </label>
+            <label>
+                <input type="radio" name="Type" id="other" value="Other" autocomplete="off" @Model.Other disabled=""> Other
+            </label>
+        </div>
+        <hr class="bg-secondary w-50 hr-2" />
+        <div class="product-action-holder mt-4 d-flex justify-content-around col-md-4 offset-md-4">
+            <button type="submit" class="btn chushka-bg-color">Delete</button>
+            <a onclick="goBack()" class="btn chushka-bg-color text-white">Cancel</a>
+        </div>
+    </form>
+</main>

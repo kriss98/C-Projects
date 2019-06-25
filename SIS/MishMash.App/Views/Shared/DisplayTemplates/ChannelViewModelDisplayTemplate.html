@@ -1,0 +1,12 @@
+﻿<div class="col-md-2 mx-3 bg-mishmash rounded py-3">
+    <h6 class="text-white text-center my-3">@Model.Name</h6>
+    <hr class="bg-white hr-2 w-75">
+    <h6 class="text-white text-center my-4">@Model.Type Channel</h6>
+    <hr class="bg-white hr-2 w-75">
+    <h6 class="text-white text-center my-4">@Model.Followers Following</h6>
+    <hr class="bg-white hr-2 w-75">
+    <div class="follow-button-holder d-flex justify-content-between w-50 mx-auto mt-4">
+        <a href="/Channels/Follow?Id=@Model.Id"><h6 class="text-center text-white">Follow</h6></a>
+        <a href="/Channels/Details?Id=@Model.Id"><h6 class="text-center text-white">Details</h6></a>
+    </div>
+</div>

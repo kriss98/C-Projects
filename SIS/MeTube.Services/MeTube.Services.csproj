@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MeTube.Data\MeTube.Data.csproj" />
+    <ProjectReference Include="..\MeTube.ViewModels\MeTube.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

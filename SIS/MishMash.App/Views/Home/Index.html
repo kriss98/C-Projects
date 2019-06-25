@@ -1,0 +1,51 @@
+﻿<div style="display: @Model.NotLoggedIn">
+    <main>
+        <div class="jumbotron mt-3 bg-mishmash">
+            <h1 class="text-white">Welcome to Mish-Mash Media Channels</h1>
+            <hr class="bg-white hr-2" />
+            <h3 class="text-white"><a href="/Users/Login">Login</a> if you have an account.</h3>
+            <h3 class="text-white"><a href="/Users/Register">Register</a> if you don't.</h3>
+        </div>
+    </main>
+</div>
+<div style="display: @Model.LoggedIn">
+    <h4 class="text-mishmash text-center my-2">Welcome, @Model.Username!</h4>
+    <h5 class="text-mishmash text-left">Your Channels</h5>
+    <hr class="hr-2 bg-mishmash" />
+    <div class="row">
+        @Model.Collection.MyChannels(@Item)
+    </div>
+    <br />
+    <h5 class="text-mishmash text-left">Suggested</h5>
+    <hr class="hr-2 bg-mishmash" />
+    <div class="row">
+        @Model.Collection.Suggested(@Item)
+    </div>
+    <br />
+    <h5 class="text-mishmash text-left">See Other</h5>
+    <hr class="hr-2 bg-mishmash" />
+    <div class="row">
+        @Model.Collection.SeeOther(@Item)
+    </div>
+</div>
+<div style="display: @Model.LoggedInAdmin">
+    <h4 class="text-mishmash text-center my-2">Welcome, Admin-@Model.Username!</h4>
+    <h5 class="text-mishmash text-left">Your Channels</h5>
+    <hr class="hr-2 bg-mishmash" />
+    <div class="row">
+        @Model.Collection.MyChannels(@Item)
+    </div>
+    <br />
+    <h5 class="text-mishmash text-left">Suggested</h5>
+    <hr class="hr-2 bg-mishmash" />
+    <div class="row">
+        @Model.Collection.Suggested(@Item)
+    </div>
+    <br />
+    <h5 class="text-mishmash text-left">See Other</h5>
+    <hr class="hr-2 bg-mishmash" />
+    <div class="row">
+        @Model.Collection.SeeOther(@Item)
+    </div>
+    <br />
+</div>
